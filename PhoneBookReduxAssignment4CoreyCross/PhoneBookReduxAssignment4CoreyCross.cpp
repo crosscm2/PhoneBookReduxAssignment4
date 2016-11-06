@@ -1,13 +1,12 @@
 // PhoneBookReduxAssignment4CoreyCross.cpp : Defines the entry point for the console application.
 //
 
-//#include "stdafx.h"
+#include "stdafx.h"
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <string.h>
 #include <iomanip>
 #include <conio.h>
-#include <cmath>
 
 using namespace std;
 
@@ -46,6 +45,8 @@ void phoneBook::showdata() {
 void main() {
 	phoneBook rec[100];
 	fstream file;
+	int jump;
+	int cnt;
 	char * filename;
 	cout << "Please Enter PhoneBook File Path: " << "";
 	cin >> filename;
@@ -85,7 +86,7 @@ void main() {
 				break;
 
 			case 2: 
-				int jump = 0;
+				jump = 0;
 				jump = jump + 5;
 				file.seekg(0, ios::beg);
 				cout << "\n\nRecords in Phone Book\n";
@@ -145,7 +146,7 @@ void main() {
 				cin >> nm;
 				file.seekg(0, ios::beg);
 				found = 0;
-				int cnt = 0;
+				cnt = 0;
 				while (file.read((char *)&rec, sizeof(rec)))
 				{
 					cnt++;
@@ -168,7 +169,7 @@ void main() {
 					cout << "Enter New Telephone No : ";
 					cin >> telno;
 					file.seekp(location);
-					(*rec).update(nm, telno);
+					(*rec).update(nm, telno, mobno);
 					file.write((char *)&rec, sizeof(rec));
 					file.flush();
 				}
